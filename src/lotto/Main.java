@@ -10,6 +10,11 @@ public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
 		
+		Klient klient = new Klient();
+		klient.skreslLiczby();
+		
+		
+		
 		MaszynaDuzyLotek duzy = new MaszynaDuzyLotek();
 		MaszynaDuzyLotek duzy2 = new MaszynaDuzyLotek();
 		duzy.losujIZapisz();
