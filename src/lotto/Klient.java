@@ -94,5 +94,10 @@ public class Klient {
 		}		
 		return skresloneLiczby;
 	}
+	
+	private void zarejestrujKupon(){
+		Kupon kupon = new Kupon();
+		kupon.zarejestruj(skreslLiczby());
+	}
 
 }
