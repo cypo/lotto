@@ -12,54 +12,65 @@ public class Klient {
 	}
 	
 	private static int id;
-	private int iloscZakladow=8;
+	private int iloscZakladow;
 	private String[] rodzajZakladow;
 	private Scanner odczyt = new Scanner(System.in);
+	private int liczbaKuponow = 0;
+	boolean ilosc = false;
 	
 		
 	private void wybierzIloscZakladow(){
 		//ilosc zakladow
-		System.out.println("Podaj ilosc zakladow");
-		iloscZakladow = odczyt.nextInt();
+		
+		while(!ilosc){
+			System.out.println("Podaj ilosc zakladow");
+			iloscZakladow = odczyt.nextInt();
+			ilosc = iloscZakladow > 10 ? false : true;
+			if (iloscZakladow > 10){
+				System.out.println("Mo¿esz wybraæ max 10 zak³adów");
+			}
+		}
+
+
 	}
 	
 	private void wybierzZaklady(){
 		rodzajZakladow = new String[iloscZakladow];
 		
 		for(int i=0; i<iloscZakladow; i++){
-			System.out.println("Podaj typ zak³adu nr "+(i+1));
+			System.out.println("Podaj typ zak³adu nr "+(i+1)+" - DL - duzy lotek, ML - maly lotek, MM - multi lotek");
 			rodzajZakladow[i]=odczyt.next();
 		}
 
 	}
-	public int[][] skreslLiczby(){
+	private int[][] skreslLiczby(){
 		//random
 		int iloscLosowanychLiczb = 0;
 		int iloscDostepnychLiczb = 0;
 		int[][] skresloneLiczby = new int[iloscZakladow][];
-		
+		System.out.println("Wybrane zak³ady: ");
 		for(int i=0; i<iloscZakladow; i++){
 			
 			if(rodzajZakladow[i].equals("DL")){
-				//zmienic na sta³e
-				System.out.println("1  "+rodzajZakladow[i]);
+				System.out.print(rodzajZakladow[i]+", ");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_DL;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_DL;
 			}
 			else if(rodzajZakladow[i].equals("ML")){
-				System.out.println("2   "+rodzajZakladow[i]);
+				System.out.print(rodzajZakladow[i]+", ");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_ML;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_ML;
 			}
 			else if(rodzajZakladow[i].equals("MM")){
-				System.out.println("3   "+rodzajZakladow[i]);
+				System.out.print(rodzajZakladow[i]+", ");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_MULTI;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_MULTI;
 			}
 			else{
-				System.out.println("4   "+rodzajZakladow[i]);
+				System.out.print(rodzajZakladow[i]+", ");
 				System.out.println("nieprawid³owy rodzaj zak³adu");
 			}
+			
 						
 			int[] wylosowaneLiczby = new int[iloscLosowanychLiczb];
 			Random losowanaLiczba = new Random();
@@ -85,8 +96,10 @@ public class Klient {
 			skresloneLiczby[i]=wylosowaneLiczby;
 		}
 		//Arrays.sort(skresloneLiczby);
-		
+		System.out.println();
+		System.out.println("Skreslone liczby:");
 		for(int z=0;z<skresloneLiczby.length; z++){
+			System.out.print(rodzajZakladow[z]+": ");
 			for(int a=0; a<skresloneLiczby[z].length; a++){
 				System.out.print(skresloneLiczby[z][a]+", ");
 			}
@@ -95,9 +108,17 @@ public class Klient {
 		return skresloneLiczby;
 	}
 	
-	private void zarejestrujKupon(){
-		Kupon kupon = new Kupon();
-		kupon.zarejestruj(skreslLiczby());
+	public void zarejestrujKupon(){
+		if(liczbaKuponow < 1){
+			Kupon kupon = new Kupon();
+			kupon.zapiszZaklady(skreslLiczby());
+		
+			kupon.zarejestrujKupon();
+			liczbaKuponow++;
+		}
+		else{
+			System.out.println("Limit kuponów wykorzystany!");
+		}
 	}
 
 }

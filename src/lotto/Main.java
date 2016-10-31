@@ -11,8 +11,11 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException {
 		
 		Klient klient = new Klient();
-		klient.skreslLiczby();
-		
+		klient.zarejestrujKupon();
+		klient.zarejestrujKupon();
+		klient.zarejestrujKupon();
+	//	Klient klient2 = new Klient();
+	//	klient2.zarejestrujKupon();
 		
 		
 		MaszynaDuzyLotek duzy = new MaszynaDuzyLotek();

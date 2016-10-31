@@ -1,11 +1,12 @@
 package lotto;
 public class Kolektura {
 
-	private Kupon kupon;
+	private int[][] kupon;
 	
+	public Kolektura(int[][] kupon){
+		this.kupon = kupon;
+	}
+
 	
 
-	public void zapiszKupon(){
-		
-	}
 }
