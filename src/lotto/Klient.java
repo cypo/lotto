@@ -9,9 +9,11 @@ public class Klient {
 	public Klient(){
 		wybierzIloscZakladow();
 		wybierzZaklady();
+		idKlienta = ++id;
 	}
 	
 	private static int id;
+	private int idKlienta;
 	private int iloscZakladow;
 	private String[] rodzajZakladow;
 	private Scanner odczyt = new Scanner(System.in);
@@ -48,7 +50,7 @@ public class Klient {
 		int iloscLosowanychLiczb = 0;
 		int iloscDostepnychLiczb = 0;
 		int[][] skresloneLiczby = new int[iloscZakladow][];
-		System.out.println("Wybrane zak³ady: ");
+		System.out.print("Wybrane zak³ady: ");
 		for(int i=0; i<iloscZakladow; i++){
 			
 			if(rodzajZakladow[i].equals("DL")){
@@ -97,6 +99,7 @@ public class Klient {
 		}
 		//Arrays.sort(skresloneLiczby);
 		System.out.println();
+		System.out.println("Klient nr: "+idKlienta);
 		System.out.println("Skreslone liczby:");
 		for(int z=0;z<skresloneLiczby.length; z++){
 			System.out.print(rodzajZakladow[z]+": ");
@@ -112,7 +115,6 @@ public class Klient {
 		if(liczbaKuponow < 1){
 			Kupon kupon = new Kupon();
 			kupon.zapiszZaklady(skreslLiczby());
-		
 			kupon.zarejestrujKupon();
 			liczbaKuponow++;
 		}

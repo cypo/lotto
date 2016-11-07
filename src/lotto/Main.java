@@ -12,10 +12,10 @@ public class Main {
 		
 		Klient klient = new Klient();
 		klient.zarejestrujKupon();
-		klient.zarejestrujKupon();
-		klient.zarejestrujKupon();
-	//	Klient klient2 = new Klient();
-	//	klient2.zarejestrujKupon();
+	//	klient.zarejestrujKupon();
+	//	klient.zarejestrujKupon();
+		Klient klient2 = new Klient();
+		klient2.zarejestrujKupon();
 		
 		
 		MaszynaDuzyLotek duzy = new MaszynaDuzyLotek();

@@ -3,7 +3,12 @@ package lotto;
 public class Kupon {
 
 	private static int id;
+	private int idKuponu;
 	private int[][] skresloneZaklady;
+	
+	public Kupon(){
+		idKuponu = ++id;
+	}
 	
 	public void zapiszZaklady(int[][] kupon){
 		skresloneZaklady = kupon;
@@ -12,6 +17,7 @@ public class Kupon {
 	
 	public void zarejestrujKupon(){
 		Kolektura kolektura = new Kolektura(skresloneZaklady);
+		System.out.println("Zarejestrowano kupon nr: "+idKuponu);
 		
 	}
 	
