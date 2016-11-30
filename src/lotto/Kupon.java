@@ -9,7 +9,7 @@ public class Kupon {
 	public Kupon(){
 		idKuponu = ++id;
 	}
-	
+//dlaczego nie mozemy tego przypisac?	
 	public void zapiszZaklady(int[][] kupon){
 		skresloneZaklady = kupon;
 	}
