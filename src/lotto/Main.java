@@ -2,21 +2,36 @@ package lotto;
 
 
 
+import java.util.Scanner;
+
 import lotto.maszyny.MaszynaDuzyLotek;
 import lotto.maszyny.MaszynaMalyLotek;
 import lotto.maszyny.MaszynaMultiLotek;
 
 public class Main {
 
+	
 	public static void main(String[] args) throws InterruptedException {
 		
-		Klient klient = new Klient();
-		klient.zarejestrujKupon();
-	//	klient.zarejestrujKupon();
-	//	klient.zarejestrujKupon();
-		Klient klient2 = new Klient();
-		klient2.zarejestrujKupon();
+		Scanner odczyt = new Scanner(System.in);
+		int iloscKlientow;
 		
+		System.out.println("Podaj ilosc klientow");
+		iloscKlientow = odczyt.nextInt();
+		
+		
+		Kolektura kolektura = new Kolektura(iloscKlientow);
+		
+		
+		
+		
+	//	Klient klient = new Klient();
+	//	klient.zarejestrujKupon();
+	//	klient.zarejestrujKupon();
+	//	klient.zarejestrujKupon();
+	//	Klient klient2 = new Klient();
+	//	klient2.zarejestrujKupon();
+		System.out.println();
 		
 		MaszynaDuzyLotek duzy = new MaszynaDuzyLotek();
 		MaszynaDuzyLotek duzy2 = new MaszynaDuzyLotek();
