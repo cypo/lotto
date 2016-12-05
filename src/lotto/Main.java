@@ -1,7 +1,5 @@
 package lotto;
 
-
-
 import java.util.Scanner;
 
 import lotto.maszyny.MaszynaDuzyLotek;
@@ -17,18 +15,9 @@ public class Main {
 		Klient[] klienci = new Klient[liczbaKlientow];
 		Kolektura kolektura = new Kolektura();
 		
-	//	Klient klient = new Klient();
-	//	Klient klient2 = new Klient();
-		
-	//	kolektura.skreslChybilTrafil(klient);
-	//	kolektura.skreslChybilTrafil(klient2);
-		
-
-		
-		
 		for(int i=0; i<liczbaKlientow; i++){
 			Klient klient = new Klient();
-			kolektura.skreslChybilTrafil(klient);
+			kolektura.skreslChybilTrafil(klient.getKupon());
 			System.out.println(klient.getKupon().toString());
 			klienci[i] = klient;
 		}
@@ -42,24 +31,12 @@ public class Main {
 		System.out.println(klienci[numer-1].getKupon().toString());
 		
 		
-		
-		//obiekt klient, klient daje input do kolektury i dostaje cos w zamian (kupon)
-		
-	//	Klient klient = new Klient();
-	//	klient.zarejestrujKupon();
-	//	klient.zarejestrujKupon();
-	//	klient.zarejestrujKupon();
-	//	Klient klient2 = new Klient();
-	//	klient2.zarejestrujKupon();
+
 		System.out.println();
 		
 		MaszynaDuzyLotek duzy = new MaszynaDuzyLotek();
-		MaszynaDuzyLotek duzy2 = new MaszynaDuzyLotek();
 		duzy.losujIZapisz();
-		duzy2.losujIZapisz();
 		System.out.println(duzy.zwrocWynikLosowania());
-		System.out.println(duzy2.zwrocWynikLosowania());
-		
 		
 		MaszynaMalyLotek maly = new MaszynaMalyLotek();
 		maly.losujIZapisz();

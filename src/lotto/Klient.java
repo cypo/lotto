@@ -1,14 +1,11 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Klient {
 
 	private static int id;
 	private int idKlienta;
-	private int idKuponu;
 	private Kupon kupon;
 	private int iloscZakladow;
 	private int rodzajZakladu;
@@ -21,11 +18,9 @@ public class Klient {
 		kupon = new Kupon(iloscZakladow, rodzajZakladu, idKlienta);
 	}
 	
-	
 	public Kupon getKupon(){
 		return kupon;
 	}
-	
 
 	private void wybierzIloscZakladow() {
 			iloscZakladow = random.nextInt(10)+1;
@@ -37,6 +32,7 @@ public class Klient {
 			rodzajZakladu = random.nextInt(3)+1;
 		}
 	}
+	
 	@Override
 	public String toString(){
 		StringBuffer stringBuffer = new StringBuffer();

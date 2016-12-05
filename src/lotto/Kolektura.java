@@ -18,8 +18,8 @@ public class Kolektura {
 		this.kupon = kupon;
 	}
 
-	public void skreslChybilTrafil(Klient klient){
-		kupon = klient.getKupon();
+	public void skreslChybilTrafil(Kupon kupon){
+		this.kupon = kupon;
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
 		

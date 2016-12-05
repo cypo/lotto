@@ -1,9 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
-
 public class Kupon {
 
 	private static int id;
@@ -12,18 +8,14 @@ public class Kupon {
 	private int[][] skresloneZaklady;
 	private int iloscZakladow;
 	private int rodzajZakladu;
-	private Scanner odczyt = new Scanner(System.in);
-	private int liczbaKuponow = 0;
 	boolean ilosc = false;
 	
-	
-	
+		
 	public Kupon(int iloscZakladow, int rodzajZakladu, int idKlienta){
 		idKuponu = ++id;
 		this.iloscZakladow = iloscZakladow;
 		this.rodzajZakladu = rodzajZakladu;
 		this.idKlienta = idKlienta;
-		
 	}
 	public int getIloscZakladow(){
 		return iloscZakladow;
