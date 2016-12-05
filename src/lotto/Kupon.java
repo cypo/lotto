@@ -8,39 +8,33 @@ public class Kupon {
 
 	private static int id;
 	private int idKuponu;
+	private int idKlienta;
 	private int[][] skresloneZaklady;
 	private int iloscZakladow;
 	private int rodzajZakladu;
 	private Scanner odczyt = new Scanner(System.in);
 	private int liczbaKuponow = 0;
 	boolean ilosc = false;
-	private Random random = new Random();
 	
 	
-	public Kupon(){
+	
+	public Kupon(int iloscZakladow, int rodzajZakladu, int idKlienta){
 		idKuponu = ++id;
-		wybierzIloscZakladow();
-		wybierzZaklad();
-	}
-
-	
-	private void wybierzIloscZakladow() {
-			iloscZakladow = random.nextInt(10)+1;
-	}
-
-	private void wybierzZaklad() {
+		this.iloscZakladow = iloscZakladow;
+		this.rodzajZakladu = rodzajZakladu;
+		this.idKlienta = idKlienta;
 		
-		for (int i = 0; i < iloscZakladow; i++) {
-			rodzajZakladu = random.nextInt(3)+1;
-		}
 	}
-	
 	public int getIloscZakladow(){
 		return iloscZakladow;
 	}
 	public int getRodzajZakladu(){
 		return rodzajZakladu;
 	}
+	public int getIdKuponu(){
+		return idKuponu;
+	}
+	
 	public void setSkresloneZaklady(int[][] skresloneZaklady){
 		this.skresloneZaklady = skresloneZaklady;
 	}
@@ -48,9 +42,11 @@ public class Kupon {
 	@Override
 	public String toString(){
 		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append("toString: ");
+		stringBuffer.append("KuponToString: ");
 		stringBuffer.append("Rodzaj zak³adu: "+rodzajZakladu+" ");
+		stringBuffer.append("Iloœæ zak³adów: "+iloscZakladow+" ");
 		stringBuffer.append("ID kuponu: "+idKuponu+" ");
+		stringBuffer.append("ID klienta: "+idKlienta+" ");
 		stringBuffer.append("Skreœlone liczby: ");
 		for(int i=0; i<skresloneZaklady.length; i++){
 			stringBuffer.append("[");
@@ -63,6 +59,5 @@ public class Kupon {
 		return stringBuffer.toString();
 		
 	}
-
 	
 }

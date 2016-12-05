@@ -6,30 +6,25 @@ import java.util.Random;
 
 public class Kolektura {
 
-	private int[][] kupon;
+	private Kupon kupon;
 
-	
-	public Kolektura(int iloscKlientow){
-		przyjmijKlientow(iloscKlientow);
+	public Kolektura(){
+		
 	}
-	public Kolektura(int[][] kupon){
+	public Kolektura(int iloscKlientow){
+	//	przyjmijKlientow(iloscKlientow);
+	}
+	public Kolektura(Kupon kupon){
 		this.kupon = kupon;
 	}
 
-	private void przyjmijKlientow(int iloscKlientow){
+	public void skreslChybilTrafil(Klient klient){
+		kupon = klient.getKupon();
+		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
+		kupon.setSkresloneZaklady(chybilTrafil);
 		
-		for (int i=0; i<iloscKlientow; i++){
-			
-			Kupon kupon = new Kupon();
-			int iloscZakladow = kupon.getIloscZakladow();
-			int rodzajZakladow = kupon.getRodzajZakladu();
-			kupon.setSkresloneZaklady(skreslLiczby(iloscZakladow, rodzajZakladow));
-			new Klient(kupon);	
-		}	
+		//return chybilTrafil;
 	}
-	
-	
-
 	
 	private int[][] skreslLiczby(int iloscZakladow, int rodzajZakladu) {
 		// random
@@ -37,21 +32,21 @@ public class Kolektura {
 		int iloscLosowanychLiczb = 0;
 		int iloscDostepnychLiczb = 0;
 		int[][] skresloneLiczby = new int[iloscZakladow][];
-		System.out.print("Wybrany rodzaj gry: ");
+	//	System.out.print("Wybrany rodzaj gry: ");
 		
 //DL
 			if (rodzajZakladu == 1) {
-				System.out.print("Du¿y Lotek");
+	//			System.out.print("Du¿y Lotek");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_DL;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_DL;
 //ML
 			} else if (rodzajZakladu == 2) {
-				System.out.print("Ma³y Lotek");
+		//		System.out.print("Ma³y Lotek");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_ML;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_ML;
 //MM
 			} else if (rodzajZakladu == 3) {
-				System.out.print("Multi Lotek");
+	//			System.out.print("Multi Lotek");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_MULTI;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_MULTI;
 			} else {
@@ -83,21 +78,21 @@ public class Kolektura {
 			skresloneLiczby[i] = wylosowaneLiczby;
 		}
 		// Arrays.sort(skresloneLiczby);
-		System.out.println();
-		//System.out.println("Klient nr: " + idKlienta);
-	//	System.out.println("Skreslone liczby:");
+	//	System.out.println();
+
+
 		for (int z = 0; z < skresloneLiczby.length; z++) {
-			System.out.print(z+1 + ": ");
+	//		System.out.print(z+1 + ": ");
 			for (int a = 0; a < skresloneLiczby[z].length; a++) {
-				System.out.print(skresloneLiczby[z][a] + ", ");
+			//	System.out.print(skresloneLiczby[z][a] + ", ");
 			}
-			System.out.println();
+	//		System.out.println();
 		}
 		return skresloneLiczby;
 	}
 
-	public void zarejestrujKupon(){
-		/////////////////////
-	}
+	
+	
+
 	
 }

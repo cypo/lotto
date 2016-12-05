@@ -11,16 +11,36 @@ import lotto.maszyny.MaszynaMultiLotek;
 public class Main {
 
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args){
+	
+		int liczbaKlientow = 100;
+		Klient[] klienci = new Klient[liczbaKlientow];
+		Kolektura kolektura = new Kolektura();
+		
+	//	Klient klient = new Klient();
+	//	Klient klient2 = new Klient();
+		
+	//	kolektura.skreslChybilTrafil(klient);
+	//	kolektura.skreslChybilTrafil(klient2);
+		
+
+		
+		
+		for(int i=0; i<liczbaKlientow; i++){
+			Klient klient = new Klient();
+			kolektura.skreslChybilTrafil(klient);
+			System.out.println(klient.getKupon().toString());
+			klienci[i] = klient;
+		}
 		
 		Scanner odczyt = new Scanner(System.in);
-		int iloscKlientow;
-		
-		System.out.println("Podaj ilosc klientow");
-		iloscKlientow = odczyt.nextInt();
+		System.out.println("Podaj numer klienta");
+		int numer = odczyt.nextInt();
 		
 		
-		Kolektura kolektura = new Kolektura(iloscKlientow);
+		System.out.println(klienci[numer-1].toString());
+		System.out.println(klienci[numer-1].getKupon().toString());
+		
 		
 		
 		//obiekt klient, klient daje input do kolektury i dostaje cos w zamian (kupon)
