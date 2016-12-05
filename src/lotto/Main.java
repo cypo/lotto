@@ -23,7 +23,7 @@ public class Main {
 		Kolektura kolektura = new Kolektura(iloscKlientow);
 		
 		
-		
+		//obiekt klient, klient daje input do kolektury i dostaje cos w zamian (kupon)
 		
 	//	Klient klient = new Klient();
 	//	klient.zarejestrujKupon();
