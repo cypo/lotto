@@ -40,10 +40,13 @@ public class Kupon {
 		switch (rodzajZakladu) {
 		  case 1:
 		    rodzajZakladuTekst = "Duzy Lotek";
+		    break;
 		  case 2:
 			  rodzajZakladuTekst = "Maly Lotek";
+			  break;
 		  case 3:
 			  rodzajZakladuTekst = "Multi Lotek";
+			  break;
 		}
 		
 		stringBuffer.append("Rodzaj zakladu: "+rodzajZakladuTekst);
