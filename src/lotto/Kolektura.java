@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class Kolektura {
 
-	private Kupon kupon;
+	
+	//zapisanie kuponow w kolekturze (arraylist)
 
 	public Kolektura(){
 		
@@ -15,11 +16,11 @@ public class Kolektura {
 	//	przyjmijKlientow(iloscKlientow);
 	}
 	public Kolektura(Kupon kupon){
-		this.kupon = kupon;
+
 	}
 
 	public void skreslChybilTrafil(Kupon kupon){
-		this.kupon = kupon;
+
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
 		
@@ -51,7 +52,7 @@ public class Kolektura {
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_MULTI;
 			} else {
 				System.out.print(rodzajZakladu + ", ");
-				System.out.println("nieprawid³owy rodzaj zak³adu");
+				System.out.println("nieprawidlowy rodzaj zakladu");
 			}
 			
 		for (int i = 0; i < iloscZakladow; i++) {

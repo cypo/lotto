@@ -13,10 +13,12 @@ public class Main {
 	
 		int liczbaKlientow = 100;
 		Klient[] klienci = new Klient[liczbaKlientow];
+		Klient klient = null;
+		
 		Kolektura kolektura = new Kolektura();
 		
 		for(int i=0; i<liczbaKlientow; i++){
-			Klient klient = new Klient();
+			klient= new Klient();
 			kolektura.skreslChybilTrafil(klient.getKupon());
 			System.out.println(klient.getKupon().toString());
 			klienci[i] = klient;

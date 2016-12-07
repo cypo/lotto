@@ -35,11 +35,11 @@ public class Kupon {
 	public String toString(){
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("KuponToString: ");
-		stringBuffer.append("Rodzaj zak³adu: "+rodzajZakladu+" ");
-		stringBuffer.append("Iloœæ zak³adów: "+iloscZakladow+" ");
+		stringBuffer.append("Rodzaj zakladu: "+rodzajZakladu+" ");
+		stringBuffer.append("Ilosc zakladów: "+iloscZakladow+" ");
 		stringBuffer.append("ID kuponu: "+idKuponu+" ");
 		stringBuffer.append("ID klienta: "+idKlienta+" ");
-		stringBuffer.append("Skreœlone liczby: ");
+		stringBuffer.append("Skreslone liczby: ");
 		for(int i=0; i<skresloneZaklady.length; i++){
 			stringBuffer.append("[");
 			for(int x=0; x<skresloneZaklady[i].length; x++){

@@ -29,6 +29,7 @@ public class Klient {
 	private void wybierzZaklad() {
 		
 		for (int i = 0; i < iloscZakladow; i++) {
+			//stala - co to jest 3? 
 			rodzajZakladu = random.nextInt(3)+1;
 		}
 	}
@@ -39,8 +40,8 @@ public class Klient {
 		stringBuffer.append("KlientToString: ");
 		stringBuffer.append("ID Klienta: "+idKlienta+" ");
 		stringBuffer.append("ID Kuponu: "+kupon.getIdKuponu()+" ");
-		stringBuffer.append("Iloœæ wybranych zak³adów: "+iloscZakladow+" ");
-		stringBuffer.append("Rodzaj zak³adu: "+rodzajZakladu);
+		stringBuffer.append("Ilosc wybranych zakladów: "+iloscZakladow+" ");
+		stringBuffer.append("Rodzaj zakladu: "+rodzajZakladu);
 		return stringBuffer.toString();
 		
 	}
