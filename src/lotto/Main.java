@@ -10,7 +10,8 @@ public class Main {
 
 	
 	public static void main(String[] args){
-	
+		
+		
 		int liczbaKlientow = 100;
 		Klient[] klienci = new Klient[liczbaKlientow];
 		Klient klient = null;
@@ -21,13 +22,13 @@ public class Main {
 			klient= new Klient();
 			kolektura.skreslChybilTrafil(klient.getKupon());
 			System.out.println(klient.getKupon().toString());
-			klienci[i] = klient;
+			klienci[i] = klient; 
 		}
 		
 		Scanner odczyt = new Scanner(System.in);
 		System.out.println("Podaj numer klienta");
 		int numer = odczyt.nextInt();
-		
+		odczyt.close();
 		
 		System.out.println(klienci[numer-1].toString());
 		System.out.println(klienci[numer-1].getKupon().toString());
