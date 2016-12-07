@@ -9,7 +9,7 @@ public class Kupon {
 	private int iloscZakladow;
 	private int rodzajZakladu;
 	boolean ilosc = false;
-	
+	private String rodzajZakladuTekst = "";
 		
 	public Kupon(int iloscZakladow, int rodzajZakladu, int idKlienta){
 		idKuponu = ++id;
@@ -33,17 +33,37 @@ public class Kupon {
 	
 	@Override
 	public String toString(){
+		
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("KuponToString: ");
-		stringBuffer.append("Rodzaj zakladu: "+rodzajZakladu+" ");
-		stringBuffer.append("Ilosc zakladów: "+iloscZakladow+" ");
-		stringBuffer.append("ID kuponu: "+idKuponu+" ");
-		stringBuffer.append("ID klienta: "+idKlienta+" ");
+		
+		switch (rodzajZakladu) {
+		  case 1:
+		    rodzajZakladuTekst = "Duzy Lotek";
+		  case 2:
+			  rodzajZakladuTekst = "Maly Lotek";
+		  case 3:
+			  rodzajZakladuTekst = "Multi Lotek";
+		}
+		
+		stringBuffer.append("Rodzaj zakladu: "+rodzajZakladuTekst);
+		stringBuffer.append(" | ");
+		stringBuffer.append("Ilosc zakladów: "+iloscZakladow);
+		stringBuffer.append(" | ");
+		stringBuffer.append("ID kuponu: "+idKuponu);
+		stringBuffer.append(" | ");
+		stringBuffer.append("ID klienta: "+idKlienta);
+		stringBuffer.append(" | ");
 		stringBuffer.append("Skreslone liczby: ");
 		for(int i=0; i<skresloneZaklady.length; i++){
 			stringBuffer.append("[");
 			for(int x=0; x<skresloneZaklady[i].length; x++){
-				stringBuffer.append(skresloneZaklady[i][x]+", ");
+				if(x!=skresloneZaklady[i].length-1){
+					stringBuffer.append(skresloneZaklady[i][x]+", ");
+				}
+				else{
+					stringBuffer.append(skresloneZaklady[i][x]);
+				}
 			}
 			stringBuffer.append("]");
 		}

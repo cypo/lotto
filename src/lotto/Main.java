@@ -32,7 +32,7 @@ public class Main {
 		System.out.println(klienci[numer-1].toString());
 		System.out.println(klienci[numer-1].getKupon().toString());
 		
-		
+		System.out.println(kolektura.getKupon(34).toString());
 
 		System.out.println();
 		

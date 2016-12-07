@@ -1,32 +1,31 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 
 public class Kolektura {
 
-	
+	List<Kupon> zarejestrowaneKupony = new ArrayList<>();
 	//zapisanie kuponow w kolekturze (arraylist)
 
 	public Kolektura(){
 		
 	}
-	public Kolektura(int iloscKlientow){
-	//	przyjmijKlientow(iloscKlientow);
-	}
-	public Kolektura(Kupon kupon){
 
-	}
 
 	public void skreslChybilTrafil(Kupon kupon){
 
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
-		
-		//return chybilTrafil;
+		zarejestrowaneKupony.add(kupon);
 	}
 	
+	public Kupon getKupon(int id){
+		return zarejestrowaneKupony.get(id-1);
+	}
 	private int[][] skreslLiczby(int iloscZakladow, int rodzajZakladu) {
 		// random
 		
