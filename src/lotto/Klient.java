@@ -16,11 +16,29 @@ public class Klient {
 		idKlienta = ++id;
 		wybierzIloscZakladow();
 		wybierzZaklad();
-		kupon = new Kupon(iloscZakladow, rodzajZakladu, idKlienta);
+
+		if(rodzajZakladu == 1){
+			kupon = new KuponDuzy(iloscZakladow, idKlienta);
+		}
+		else if(rodzajZakladu == 2){
+			kupon = new KuponMaly(iloscZakladow, idKlienta);
+		}
+		else if(rodzajZakladu == 3){
+			kupon = new KuponMulti(iloscZakladow, idKlienta);
+		}
+		
 	}
 	
 	public Kupon getKupon(){
 		return kupon;
+	}
+	//debug
+	public int getRodzajZakladu(){
+		return rodzajZakladu;
+	}
+	
+	public void setKupon(Kupon kupon){
+		this.kupon = kupon;
 	}
 
 	private void wybierzIloscZakladow() {
@@ -39,20 +57,39 @@ public class Klient {
 		switch (rodzajZakladu) {
 		  case 1:
 		    rodzajZakladuTekst = "Duzy Lotek";
+		    break;
 		  case 2:
 			  rodzajZakladuTekst = "Maly Lotek";
+			  break;
 		  case 3:
 			  rodzajZakladuTekst = "Multi Lotek";
+			  break;
 		}
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("KlientToString: ");
 		stringBuffer.append("ID Klienta: "+idKlienta);
 		stringBuffer.append(" | ");
-		stringBuffer.append("ID Kuponu: "+kupon.getIdKuponu());
+		stringBuffer.append("ID Kuponu: "+kupon.getIdKuponuOgolny());
 		stringBuffer.append(" | ");
 		stringBuffer.append("Ilosc wybranych zakladów: "+iloscZakladow);
 		stringBuffer.append(" | ");
 		stringBuffer.append("Rodzaj zakladu: "+rodzajZakladuTekst);
+		int[][] skresloneZaklady = kupon.getSkresloneZaklady();
+		stringBuffer.append(" | ");
+		stringBuffer.append("Skreslone liczby: ");
+		for(int i=0; i<skresloneZaklady.length; i++){
+			stringBuffer.append("[");
+			for(int x=0; x<skresloneZaklady[i].length; x++){
+				if(x!=skresloneZaklady[i].length-1){
+					stringBuffer.append(skresloneZaklady[i][x]+", ");
+				}
+				else{
+					stringBuffer.append(skresloneZaklady[i][x]);
+				}
+			}
+			stringBuffer.append("]");
+		}
+		
 		return stringBuffer.toString();
 		
 	}

@@ -8,45 +8,38 @@ import java.util.Random;
 
 public class Kolektura {
 
-	List<Kupon> zarejestrowaneKupony = new ArrayList<>();
-	//zapisanie kuponow w kolekturze (arraylist)
-
-	public Kolektura(){
-		
-	}
+	List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
 
 
-	public void skreslChybilTrafil(Kupon kupon){
 
+	public Kupon skreslChybilTrafil(Kupon kupon){
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
 		zarejestrowaneKupony.add(kupon);
+		
+		return kupon;
 	}
 	
 	public Kupon getKupon(int id){
 		return zarejestrowaneKupony.get(id-1);
 	}
 	private int[][] skreslLiczby(int iloscZakladow, int rodzajZakladu) {
-		// random
+
 		
 		int iloscLosowanychLiczb = 0;
 		int iloscDostepnychLiczb = 0;
 		int[][] skresloneLiczby = new int[iloscZakladow][];
-	//	System.out.print("Wybrany rodzaj gry: ");
 		
 //DL
 			if (rodzajZakladu == 1) {
-	//			System.out.print("Du¿y Lotek");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_DL;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_DL;
 //ML
 			} else if (rodzajZakladu == 2) {
-		//		System.out.print("Ma³y Lotek");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_ML;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_ML;
 //MM
 			} else if (rodzajZakladu == 3) {
-	//			System.out.print("Multi Lotek");
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_MULTI;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_MULTI;
 			} else {
@@ -77,8 +70,6 @@ public class Kolektura {
 			Arrays.sort(wylosowaneLiczby);
 			skresloneLiczby[i] = wylosowaneLiczby;
 		}
-		// Arrays.sort(skresloneLiczby);
-	//	System.out.println();
 
 
 		for (int z = 0; z < skresloneLiczby.length; z++) {

@@ -19,8 +19,8 @@ public class Main {
 		Kolektura kolektura = new Kolektura();
 		
 		for(int i=0; i<liczbaKlientow; i++){
-			klient= new Klient();
-			kolektura.skreslChybilTrafil(klient.getKupon());
+			klient = new Klient();
+			klient.setKupon(kolektura.skreslChybilTrafil(klient.getKupon()));
 			System.out.println(klient.getKupon().toString());
 			klienci[i] = klient; 
 		}
@@ -30,12 +30,19 @@ public class Main {
 		int numer = odczyt.nextInt();
 		odczyt.close();
 		
+		System.out.println("ToString obiektu klasy Klient:");
 		System.out.println(klienci[numer-1].toString());
+
+		System.out.println("ToString obiektu klasy Kupon:");
 		System.out.println(klienci[numer-1].getKupon().toString());
 		
+		System.out.println("ToString obiektu klasy Kupon (odczytane z klienta):");
 		System.out.println(kolektura.getKupon(34).toString());
 
-		System.out.println();
+
+		
+		
+		System.out.print("\n \n-----------------Losowanie:----------------- \n \n");
 		
 		MaszynaDuzyLotek duzy = new MaszynaDuzyLotek();
 		duzy.losujIZapisz();
