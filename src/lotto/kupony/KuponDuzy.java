@@ -1,4 +1,4 @@
-package lotto;
+package lotto.kupony;
 
 public class KuponDuzy extends Kupon {
 	private static int id;

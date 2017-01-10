@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import lotto.kupony.Kupon;
+
 
 public class Kolektura {
 

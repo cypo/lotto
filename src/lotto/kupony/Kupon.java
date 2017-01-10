@@ -1,4 +1,4 @@
-package lotto;
+package lotto.kupony;
 
 public class Kupon {
 

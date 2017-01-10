@@ -2,6 +2,11 @@ package lotto;
 
 import java.util.Random;
 
+import lotto.kupony.Kupon;
+import lotto.kupony.KuponDuzy;
+import lotto.kupony.KuponMaly;
+import lotto.kupony.KuponMulti;
+
 public class Klient {
 
 	private static int id;
