@@ -1,23 +1,36 @@
-package lotto;
+package lotto.kolektura;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import lotto.Stale;
 import lotto.kupony.Kupon;
 
 
 public class Kolektura {
 
 	List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
-
-
-
-	public Kupon skreslChybilTrafil(Kupon kupon){
+	String plik="data//baza_danych.bin";
+	Zapis zapis = null;
+	ObjectOutputStream output=null;
+	
+	public Kolektura() throws FileNotFoundException, IOException{
+		output = new ObjectOutputStream(new FileOutputStream(plik));
+		zapis = new Zapis();
+	}
+	
+	public Kupon skreslChybilTrafil(Kupon kupon) throws IOException{
+		
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
 		zarejestrowaneKupony.add(kupon);
+		zapis.zapisz(kupon, output);
 		
 		return kupon;
 	}

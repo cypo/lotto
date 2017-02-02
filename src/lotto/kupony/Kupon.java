@@ -1,6 +1,8 @@
 package lotto.kupony;
 
-public class Kupon {
+import java.io.Serializable;
+
+public class Kupon implements Serializable{
 
 	private static int id;
 	private int idKuponuOgolny;

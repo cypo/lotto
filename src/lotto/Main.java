@@ -1,16 +1,20 @@
 package lotto;
 
+import java.io.IOException;
 import java.util.Scanner;
 
+import lotto.kolektura.Kolektura;
 import lotto.maszyny.MaszynaDuzyLotek;
 import lotto.maszyny.MaszynaMalyLotek;
 import lotto.maszyny.MaszynaMultiLotek;
 
-public class Main {
-
+public class Main{
 	
-	public static void main(String[] args){
+	
+	
+	public static void main(String[] args) throws IOException{
 		
+
 		
 		int liczbaKlientow = 100;
 		Klient[] klienci = new Klient[liczbaKlientow];
@@ -18,10 +22,12 @@ public class Main {
 		
 		Kolektura kolektura = new Kolektura();
 		
+		
 		for(int i=0; i<liczbaKlientow; i++){
 			klient = new Klient();
 			klient.setKupon(kolektura.skreslChybilTrafil(klient.getKupon()));
 			System.out.println(klient.getKupon().toString());
+			
 			klienci[i] = klient; 
 		}
 		
@@ -32,7 +38,8 @@ public class Main {
 		
 		System.out.println("ToString obiektu klasy Klient:");
 		System.out.println(klienci[numer-1].toString());
-
+		
+		
 		System.out.println("ToString obiektu klasy Kupon:");
 		System.out.println(klienci[numer-1].getKupon().toString());
 		
