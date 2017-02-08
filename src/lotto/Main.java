@@ -12,7 +12,7 @@ public class Main{
 	
 	
 	
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException, ClassNotFoundException{
 		
 
 		
@@ -27,9 +27,10 @@ public class Main{
 			klient = new Klient();
 			klient.setKupon(kolektura.skreslChybilTrafil(klient.getKupon()));
 			System.out.println(klient.getKupon().toString());
-			
 			klienci[i] = klient; 
 		}
+		
+		kolektura.odczyt();
 		
 		Scanner odczyt = new Scanner(System.in);
 		System.out.println("Podaj numer klienta");

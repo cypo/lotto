@@ -1,8 +1,10 @@
 package lotto.kolektura;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,13 +18,14 @@ import lotto.kupony.Kupon;
 public class Kolektura {
 
 	List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
+	List<Kupon> kuponyZbazy = new ArrayList<Kupon>();
+	Baza baza = null;
+	ObjectInputStream input = null;
 	String plik="data//baza_danych.bin";
-	Zapis zapis = null;
-	ObjectOutputStream output=null;
 	
 	public Kolektura() throws FileNotFoundException, IOException{
-		output = new ObjectOutputStream(new FileOutputStream(plik));
-		zapis = new Zapis();
+		input = new ObjectInputStream(new FileInputStream(plik));
+		baza = new Baza();
 	}
 	
 	public Kupon skreslChybilTrafil(Kupon kupon) throws IOException{
@@ -30,10 +33,23 @@ public class Kolektura {
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
 		zarejestrowaneKupony.add(kupon);
-		zapis.zapisz(kupon, output);
-		
+		baza.zapisz(zarejestrowaneKupony);
 		return kupon;
 	}
+	
+	
+	public void odczyt() throws ClassNotFoundException, IOException{
+
+		kuponyZbazy = baza.pobierzListe(input);		
+		
+		for(int i=0; i<kuponyZbazy.size(); i++){
+			System.out.print("BAZA: ");
+			System.out.println(kuponyZbazy.get(i).toString());
+			
+		}
+	}
+	
+	
 	
 	public Kupon getKupon(int id){
 		return zarejestrowaneKupony.get(id-1);
