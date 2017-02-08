@@ -25,7 +25,7 @@ public class Kolektura {
 	
 	public Kolektura() throws FileNotFoundException, IOException{
 		input = new ObjectInputStream(new FileInputStream(plik));
-		baza = new Baza();
+		baza = Baza.getInstance();
 	}
 	
 	public Kupon skreslChybilTrafil(Kupon kupon) throws IOException{

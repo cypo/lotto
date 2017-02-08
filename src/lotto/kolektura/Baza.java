@@ -10,10 +10,22 @@ import java.util.List;
 import lotto.kupony.Kupon;
 
 class Baza implements BazaInterfejs{
-
-	List<Kupon> test = null;
-	String plik="data//baza_danych.bin";
 	
+	
+	private static Baza INSTANCE;
+    private List<Kupon> test = null; 
+    private String plik="data//baza_danych.bin";
+	 
+    private Baza(){
+
+    }
+ 
+    public static Baza getInstance(){
+        if(INSTANCE==null)
+            INSTANCE = new Baza();
+        return INSTANCE;
+    }
+		
 	
 	
 	@Override

@@ -29,7 +29,7 @@ public class Main{
 			System.out.println(klient.getKupon().toString());
 			klienci[i] = klient; 
 		}
-		
+
 		kolektura.odczyt();
 		
 		Scanner odczyt = new Scanner(System.in);
