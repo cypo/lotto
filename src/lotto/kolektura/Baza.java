@@ -1,6 +1,5 @@
 package lotto.kolektura;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +12,8 @@ class Baza implements BazaInterfejs{
 	
 	
 	private static Baza INSTANCE;
-    private List<Kupon> test = null; 
+    private List<Kupon> pobranaLista = null; 
+    private List<Kupon> listaMaly = null; 
     private String plik="data//baza_danych.bin";
 	 
     private Baza(){
@@ -37,11 +37,36 @@ class Baza implements BazaInterfejs{
 	}
 		
 	
-
 	@Override
 	public List<Kupon> pobierzListe(ObjectInputStream input) throws IOException, ClassNotFoundException {
-		test = (List<Kupon>)input.readObject();
-		return test;
+		pobranaLista = (List<Kupon>)input.readObject();
+		return pobranaLista;
 	}
 
+	public Kupon pobierzMaly(ObjectInputStream input) throws IOException, ClassNotFoundException {
+		pobranaLista = (List<Kupon>)input.readObject();
+		
+		for(int i=0; i<pobranaLista.size(); i++){
+			if(pobranaLista.get(i).getRodzajZakladu()==2){
+				System.out.println(pobranaLista.get(i).toString());
+			}
+			
+		}
+		
+		
+		
+		return null;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

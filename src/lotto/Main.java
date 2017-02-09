@@ -37,12 +37,12 @@ public class Main{
 		int numer = odczyt.nextInt();
 		odczyt.close();
 		
-		System.out.println("ToString obiektu klasy Klient:");
-		System.out.println(klienci[numer-1].toString());
+		//System.out.println("ToString obiektu klasy Klient:");
+		//System.out.println(klienci[numer-1].toString());
 		
 		
-		System.out.println("ToString obiektu klasy Kupon:");
-		System.out.println(klienci[numer-1].getKupon().toString());
+		//System.out.println("ToString obiektu klasy Kupon:");
+		//System.out.println(klienci[numer-1].getKupon().toString());
 		
 		System.out.println("ToString obiektu klasy Kupon (odczytane z klienta):");
 		System.out.println(kolektura.getKupon(34).toString());

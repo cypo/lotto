@@ -46,13 +46,14 @@ public class Kupon implements Serializable{
 		//stringBuffer.append("Rodzaj zakladu:");
 		//stringBuffer.append(" | ");
 		stringBuffer.append("Ilosc zakladów: "+iloscZakladow);
-		stringBuffer.append(" | ");
+		stringBuffer.append("\n");
 		stringBuffer.append("ID kuponu: "+getIdKuponuOgolny());
-		stringBuffer.append(" | ");
+		stringBuffer.append("\n");
 		stringBuffer.append("ID klienta: "+idKlienta);
-		stringBuffer.append(" | ");
-		stringBuffer.append("Skreslone liczby: ");
+		stringBuffer.append("\n");
+		stringBuffer.append("Skreslone liczby: \n");
 		for(int i=0; i<skresloneZaklady.length; i++){
+			stringBuffer.append(i+1+". ");
 			stringBuffer.append("[");
 			for(int x=0; x<skresloneZaklady[i].length; x++){
 				if(x!=skresloneZaklady[i].length-1){
@@ -62,7 +63,7 @@ public class Kupon implements Serializable{
 					stringBuffer.append(skresloneZaklady[i][x]);
 				}
 			}
-			stringBuffer.append("]");
+			stringBuffer.append("]\n");
 		}
 				
 		return stringBuffer.toString();

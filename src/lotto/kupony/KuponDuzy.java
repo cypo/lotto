@@ -23,7 +23,7 @@ public class KuponDuzy extends Kupon {
 	
 	@Override
 	public String toString(){
-		return "DUZY LOTEK "+super.toString();
+		return "---DUZY LOTEK--- \n"+super.toString();
 		
 	}
 	

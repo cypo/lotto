@@ -21,7 +21,7 @@ public class KuponMulti extends Kupon {
 	
 	@Override
 	public String toString(){
-		return "MULTI LOTEK "+super.toString();
+		return "---MULTI LOTEK--- \n"+super.toString();
 		
 	}
 }

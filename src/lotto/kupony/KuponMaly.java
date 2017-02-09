@@ -21,7 +21,7 @@ public class KuponMaly extends Kupon {
 	
 	@Override
 	public String toString(){
-		return "MALY LOTEK "+super.toString();
+		return "---MALY LOTEK--- \n"+super.toString();
 		
 	}
 }

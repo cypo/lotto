@@ -40,10 +40,11 @@ public class Kolektura {
 	
 	public void odczyt() throws ClassNotFoundException, IOException{
 
-		kuponyZbazy = baza.pobierzListe(input);		
+	//	kuponyZbazy = baza.pobierzListe(input);		
+		baza.pobierzMaly(input);
 		
 		for(int i=0; i<kuponyZbazy.size(); i++){
-			System.out.print("BAZA: ");
+			System.out.print("BAZA: \n");
 			System.out.println(kuponyZbazy.get(i).toString());
 			
 		}
