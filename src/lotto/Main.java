@@ -16,7 +16,7 @@ public class Main{
 		
 
 		
-		int liczbaKlientow = 100;
+		int liczbaKlientow = 5;
 		Klient[] klienci = new Klient[liczbaKlientow];
 		Klient klient = null;
 		
@@ -32,10 +32,10 @@ public class Main{
 
 		kolektura.odczyt();
 		
-		Scanner odczyt = new Scanner(System.in);
-		System.out.println("Podaj numer klienta");
-		int numer = odczyt.nextInt();
-		odczyt.close();
+	//	Scanner odczyt = new Scanner(System.in);
+	//	System.out.println("Podaj numer klienta");
+	//	int numer = odczyt.nextInt();
+	//	odczyt.close();
 		
 		//System.out.println("ToString obiektu klasy Klient:");
 		//System.out.println(klienci[numer-1].toString());
@@ -44,8 +44,8 @@ public class Main{
 		//System.out.println("ToString obiektu klasy Kupon:");
 		//System.out.println(klienci[numer-1].getKupon().toString());
 		
-		System.out.println("ToString obiektu klasy Kupon (odczytane z klienta):");
-		System.out.println(kolektura.getKupon(34).toString());
+		//System.out.println("ToString obiektu klasy Kupon (odczytane z klienta):");
+		//System.out.println(kolektura.getKupon(34).toString());
 
 
 		
