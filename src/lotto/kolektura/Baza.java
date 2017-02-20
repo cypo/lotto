@@ -1,10 +1,16 @@
 package lotto.kolektura;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import lotto.kupony.Kupon;
 
@@ -12,55 +18,42 @@ class Baza implements BazaInterfejs{
 	
 	
 	private static Baza INSTANCE;
-    private List<Kupon> pobranaLista = null; 
-    private List<Kupon> listaMaly = null; 
-    private String plik="data//baza_danych.bin";
+    private List<String> lista = new ArrayList<String>();
+    PrintWriter zapis = null;
 	 
-    private Baza(){
-
+    private Baza() throws FileNotFoundException{
+    	zapis = new PrintWriter("baza.txt");
     }
  
-    public static Baza getInstance(){
-        if(INSTANCE==null)
-            INSTANCE = new Baza();
+    public static Baza getInstance() throws FileNotFoundException{
+        if(INSTANCE==null){
+        	INSTANCE = new Baza();
+        }
         return INSTANCE;
     }
-		
-	
-	
+
 	@Override
-	public void zapisz(List<Kupon> kupon) throws IOException {
-		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(plik));
-		output.writeObject(kupon);
-		output.flush();
-		output.close();
-	}
-		
-	
-	@Override
-	public List<Kupon> pobierzListe(ObjectInputStream input) throws IOException, ClassNotFoundException {
-		pobranaLista = (List<Kupon>)input.readObject();
-		return pobranaLista;
+	public void pobierz(int numerKuponu) throws FileNotFoundException {
+		File file = new File("baza.txt");
+	    Scanner in = new Scanner(file);
+
+	    while (in.hasNextLine()) {
+	    	lista.add(in.nextLine());
+        }
+        in.close();
+        
+        System.out.println(lista.get(numerKuponu-1));
+ 
 	}
 
-	public Kupon pobierzMaly(ObjectInputStream input) throws IOException, ClassNotFoundException {
-		pobranaLista = (List<Kupon>)input.readObject();
-		
-		for(int i=0; i<pobranaLista.size(); i++){
-			if(pobranaLista.get(i).getRodzajZakladu()==2){
-				System.out.println(pobranaLista.get(i).toString());
-			}
-			
-		}
-		
-		
-		
-		return null;
-		
+	@Override
+	public void zapisz(String kupon) throws FileNotFoundException {
+	    zapis.println(kupon);
 	}
 	
-	
-	
+	public void zamknijPlik(){
+		zapis.close();
+	}
 	
 	
 	

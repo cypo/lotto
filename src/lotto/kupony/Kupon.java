@@ -2,7 +2,7 @@ package lotto.kupony;
 
 import java.io.Serializable;
 
-public class Kupon implements Serializable{
+public class Kupon {
 
 	private static int id;
 	private int idKuponuOgolny;
@@ -40,20 +40,15 @@ public class Kupon implements Serializable{
 	public String toString(){
 		
 		StringBuffer stringBuffer = new StringBuffer();
-		//stringBuffer.append("KuponToString: ");
-		
-		
-		//stringBuffer.append("Rodzaj zakladu:");
-		//stringBuffer.append(" | ");
+
 		stringBuffer.append("Ilosc zakladów: "+iloscZakladow);
-		stringBuffer.append("\n");
+		stringBuffer.append(" | ");
 		stringBuffer.append("ID kuponu: "+getIdKuponuOgolny());
-		stringBuffer.append("\n");
+		stringBuffer.append(" | ");
 		stringBuffer.append("ID klienta: "+idKlienta);
-		stringBuffer.append("\n");
-		stringBuffer.append("Skreslone liczby: \n");
+		stringBuffer.append(" | ");
+		stringBuffer.append("Skreslone liczby: ");
 		for(int i=0; i<skresloneZaklady.length; i++){
-			stringBuffer.append(i+1+". ");
 			stringBuffer.append("[");
 			for(int x=0; x<skresloneZaklady[i].length; x++){
 				if(x!=skresloneZaklady[i].length-1){
@@ -63,7 +58,7 @@ public class Kupon implements Serializable{
 					stringBuffer.append(skresloneZaklady[i][x]);
 				}
 			}
-			stringBuffer.append("]\n");
+			stringBuffer.append("] | ");
 		}
 				
 		return stringBuffer.toString();

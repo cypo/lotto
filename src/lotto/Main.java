@@ -28,10 +28,20 @@ public class Main{
 			klient.setKupon(kolektura.skreslChybilTrafil(klient.getKupon()));
 			System.out.println(klient.getKupon().toString());
 			klienci[i] = klient; 
+			if(i==liczbaKlientow-1){
+				kolektura.zakonczZapis();
+			}
 		}
-
-		kolektura.odczyt();
 		
+		
+		
+		System.out.println("ODCZYT Z PLIKU:");
+		kolektura.odczyt(3);
+		
+		
+		
+
+
 	//	Scanner odczyt = new Scanner(System.in);
 	//	System.out.println("Podaj numer klienta");
 	//	int numer = odczyt.nextInt();
