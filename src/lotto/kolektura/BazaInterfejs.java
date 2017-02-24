@@ -11,7 +11,10 @@ import lotto.kupony.Kupon;
 
 interface BazaInterfejs{
 
+		//ma zwracac liste kuponow (objektow kupon)
 	public void pobierz(int numerKuponu) throws FileNotFoundException;
+	
+	//ma przyjmowac kupon
 	public void zapisz(String kupon)throws FileNotFoundException;
 	
 	
