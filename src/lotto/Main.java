@@ -1,8 +1,6 @@
 package lotto;
 
 import java.io.IOException;
-import java.util.Scanner;
-
 import lotto.kolektura.Kolektura;
 import lotto.maszyny.MaszynaDuzyLotek;
 import lotto.maszyny.MaszynaMalyLotek;
@@ -36,7 +34,9 @@ public class Main{
 		
 		
 		System.out.println("ODCZYT Z PLIKU:");
-		kolektura.odczyt(3);
+		kolektura.odczyt();
+		System.out.println("GET");
+		System.out.println(kolektura.getKuponMaly(1).toString());
 		
 		
 		

@@ -1,6 +1,6 @@
 package lotto.kupony;
 
-import java.io.Serializable;
+
 
 public class KuponMulti extends Kupon {
 	private static int id;

@@ -1,12 +1,7 @@
 package lotto.kolektura;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +12,7 @@ import lotto.kupony.Kupon;
 
 
 public class Kolektura {
-
+	List<Kupon> kuponyMale = new ArrayList<Kupon>();
 	List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
 	Baza baza = null;
 	
@@ -39,10 +34,12 @@ public class Kolektura {
 		baza.zamknijPlik();
 	}
 	
-	public void odczyt(int numerKuponu) throws FileNotFoundException{
-	baza.pobierzMaly();
+	public void odczyt() throws FileNotFoundException{
+		kuponyMale = baza.pobierzMaly();
 	}
-
+	public Kupon getKuponMaly(int id) throws FileNotFoundException{
+		return kuponyMale.get(id-1);
+	}
 	
 	public Kupon getKupon(int id){
 		return zarejestrowaneKupony.get(id-1);

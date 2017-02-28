@@ -2,10 +2,6 @@ package lotto.kolektura;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import lotto.kupony.Kupon;
-import lotto.kupony.KuponMaly;
 
 class Baza implements BazaInterfejs{
 	
 	
 	private static Baza INSTANCE;
-    private List<String> lista = new ArrayList<String>();
+	List<Kupon> listaMaly = new ArrayList<Kupon>();
     PrintWriter zapis = null;
 	File file = new File("baza.txt");
     Scanner in = new Scanner(file);
@@ -50,7 +45,7 @@ class Baza implements BazaInterfejs{
 	
 	@Override
 	public List<Kupon> pobierzMaly() throws FileNotFoundException {
-		List<Kupon> listaMaly = new ArrayList<Kupon>();
+		
 
 		int[][] tablica = null;
 	    while (in.hasNextLine()) {

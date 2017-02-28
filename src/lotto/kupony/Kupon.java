@@ -1,7 +1,5 @@
 package lotto.kupony;
 
-import java.io.Serializable;
-
 public class Kupon {
 
 	private static int id;
@@ -17,7 +15,7 @@ public class Kupon {
 	}
 	
 	public Kupon(int id, int iloscZakladow, int[][] skresloneZaklady, int idKlienta){
-		this.id = idKuponuOgolny;
+		this.idKuponuOgolny = id;
 		this.iloscZakladow = iloscZakladow;
 		this.skresloneZaklady = skresloneZaklady;
 		this.idKlienta = idKlienta;

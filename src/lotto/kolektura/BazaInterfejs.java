@@ -1,10 +1,6 @@
 package lotto.kolektura;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.util.List;
 
 import lotto.kupony.Kupon;
