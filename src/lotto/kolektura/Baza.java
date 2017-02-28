@@ -51,15 +51,15 @@ class Baza implements BazaInterfejs{
 	@Override
 	public List<Kupon> pobierzMaly() throws FileNotFoundException {
 		List<Kupon> listaMaly = new ArrayList<Kupon>();
-		String iloscZakladow = "";
-		String idKuponu = "";
-		String idKlienta = "";
-		String liczby;
+
+		int[][] tablica = null;
 	    while (in.hasNextLine()) {
+			String iloscZakladow = "0";
+			String idKuponu = "0";
+			String idKlienta = "0";
+			String liczby;
 	    	if(in.hasNext("---MALY")){
 	    		System.out.println("Maly");
-	    		//if(in.hasNext("Ilosc zakladów: "))
-	    		//iloscZakladow = in.findInLine("(?<= Ilosc zakladów: ).*");
 	    		iloscZakladow = in.findInLine("(?<= Ilosc zakladów: )([0-9]+)");
 	    		System.out.println("ilosc zakladow: "+iloscZakladow);
 	    		idKuponu = in.findInLine("(?<= ID kuponu: )([0-9]+)");
@@ -73,7 +73,7 @@ class Baza implements BazaInterfejs{
 	    	        Matcher matcher = pattern.matcher(liczby);
 	    	        int x=0;
 	    	        
-	    	        int[][] tablica = new int[Integer.parseInt(iloscZakladow)][5];
+	    	        tablica = new int[Integer.parseInt(iloscZakladow)][5];
 	    	        while (matcher.find()) {
 	    	        	int y=0;
 	    	            String group = matcher.group();
@@ -90,9 +90,9 @@ class Baza implements BazaInterfejs{
 		    	        	y++;
 		    	        }
 		    	        x++;
-	    	            //int qq = Integer.parseInt(group);
+
 	    	        }
-	    	        //int[] tablica = new int[x];
+
 	    	        System.out.println("QQQQQQQQQ");
 	    	        for(int i=0; i<tablica.length; i++){
 	    	        	for(int y=0; y<tablica[i].length; y++){
@@ -100,23 +100,22 @@ class Baza implements BazaInterfejs{
 	    	        	}
 	    	        	System.out.println("---");
 	    	        }
-	    	
-	    		
-	    		//System.out.println("LICZBY: "+in.findInLine("(Skreslone liczby: )([0-9]+)"););
-	    		while(in.hasNext("^\\[.*\\]$")){
-	    			System.out.println(in.findInLine("^\\[.*\\]$"));
-	    		}
-	    		
-	    		
-	    		//KuponMaly kupon = new KuponMaly(3, 4, {1,2,3,4}, 3);
-	    		//listaMaly.add(in.nextLine());
+	    	        int idKuponuInt = Integer.parseInt(idKuponu);
+	    	    	int iloscZakladowInt = Integer.parseInt(iloscZakladow);
+	    	    	int idKlientaInt = Integer.parseInt(idKlienta);
+
+	    	    	Kupon kupon = new Kupon(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
+	    	    	listaMaly.add(kupon);
+	    	    	
+	    
+
 	    	}
-	    	lista.add(in.nextLine());
+	    	
+	    	in.nextLine();
         }
         in.close();
         
-        //System.out.println(lista.get(numerKuponu-1));
-        return null;
+        return listaMaly;
 	}
 	
 

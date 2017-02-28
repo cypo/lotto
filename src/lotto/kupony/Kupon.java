@@ -17,7 +17,7 @@ public class Kupon {
 	}
 	
 	public Kupon(int id, int iloscZakladow, int[][] skresloneZaklady, int idKlienta){
-		this.id = id;
+		this.id = idKuponuOgolny;
 		this.iloscZakladow = iloscZakladow;
 		this.skresloneZaklady = skresloneZaklady;
 		this.idKlienta = idKlienta;
