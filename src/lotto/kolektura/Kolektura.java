@@ -31,7 +31,7 @@ public class Kolektura {
 		kupon.setSkresloneZaklady(chybilTrafil);
 		
 		zarejestrowaneKupony.add(kupon);
-		baza.zapisz(kupon.toString());
+		baza.zapisz(kupon);
 		return kupon;
 	}
 	
@@ -40,7 +40,7 @@ public class Kolektura {
 	}
 	
 	public void odczyt(int numerKuponu) throws FileNotFoundException{
-		baza.pobierz(numerKuponu);
+	baza.pobierzMaly();
 	}
 
 	

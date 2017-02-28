@@ -16,6 +16,13 @@ public class Kupon {
 		idKuponuOgolny = ++id;
 	}
 	
+	public Kupon(int id, int iloscZakladow, int[][] skresloneZaklady, int idKlienta){
+		this.id = id;
+		this.iloscZakladow = iloscZakladow;
+		this.skresloneZaklady = skresloneZaklady;
+		this.idKlienta = idKlienta;
+	}
+	
 	public int getIdKuponuOgolny(){
 		return idKuponuOgolny;
 	}
@@ -47,15 +54,15 @@ public class Kupon {
 		stringBuffer.append(" | ");
 		stringBuffer.append("ID klienta: "+idKlienta);
 		stringBuffer.append(" | ");
-		stringBuffer.append("Skreslone liczby: ");
+		stringBuffer.append("Skreslone liczby: | ");
 		for(int i=0; i<skresloneZaklady.length; i++){
 			stringBuffer.append("[");
 			for(int x=0; x<skresloneZaklady[i].length; x++){
 				if(x!=skresloneZaklady[i].length-1){
-					stringBuffer.append(skresloneZaklady[i][x]+", ");
+					stringBuffer.append("|"+skresloneZaklady[i][x]+"|");
 				}
 				else{
-					stringBuffer.append(skresloneZaklady[i][x]);
+					stringBuffer.append("|"+skresloneZaklady[i][x]+"|");
 				}
 			}
 			stringBuffer.append("] | ");
