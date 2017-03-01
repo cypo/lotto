@@ -3,7 +3,7 @@ package lotto.kupony;
 public class Kupon {
 
 	private static int id;
-	private int idKuponuOgolny;
+	protected int idKuponuOgolny;
 	protected int iloscZakladow;
 	protected int[][] skresloneZaklady;
 	protected int idKlienta;

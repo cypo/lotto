@@ -9,17 +9,25 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lotto.Stale;
 import lotto.kupony.Kupon;
+import lotto.kupony.KuponDuzy;
+import lotto.kupony.KuponMaly;
+import lotto.kupony.KuponMulti;
 
 class Baza implements BazaInterfejs{
 	
 	
 	private static Baza INSTANCE;
-	List<Kupon> listaMaly = new ArrayList<Kupon>();
-    PrintWriter zapis = null;
-	File file = new File("baza.txt");
-    Scanner in = new Scanner(file);
-	 
+	private List<Kupon> listaMaly = new ArrayList<Kupon>();
+	private List<Kupon> listaDuzy = new ArrayList<Kupon>();
+	private List<Kupon> listaMulti = new ArrayList<Kupon>();
+    private PrintWriter zapis = null;
+	private File file = new File("baza.txt");
+    private Scanner in = null;
+    private Kupon kupon=null;
+    
+    
     private Baza() throws FileNotFoundException{
     	zapis = new PrintWriter("baza.txt");
     }
@@ -40,54 +48,62 @@ class Baza implements BazaInterfejs{
 	
 	public void zamknijPlik(){
 		zapis.close();
+		//in.close();
 	}
 	
 	
-	@Override
-	public List<Kupon> pobierzMaly() throws FileNotFoundException {
+	public List<Kupon> parsuj(String typ) throws FileNotFoundException {
 		
-
+		in = new Scanner(file);
 		int[][] tablica = null;
 	    while (in.hasNextLine()) {
 			String iloscZakladow = "0";
 			String idKuponu = "0";
 			String idKlienta = "0";
-			String liczby;
-	    	if(in.hasNext("---MALY")){
-	    		System.out.println("Maly");
-	    		iloscZakladow = in.findInLine("(?<= Ilosc zakladów: )([0-9]+)");
-	    		System.out.println("ilosc zakladow: "+iloscZakladow);
-	    		idKuponu = in.findInLine("(?<= ID kuponu: )([0-9]+)");
-	    		System.out.println("id kuponu: "+idKuponu);
-	    		idKlienta = in.findInLine("(?<= ID klienta: )([0-9]+)");
-	    		System.out.println("id klienta: "+idKlienta);
-	    		liczby = in.findInLine("\\| \\[.*\\] \\|");
-	    		System.out.println(liczby);
+			String liczby = "";
+	    	if(in.hasNext("---"+typ)){
 	    		
-	    		 	Pattern pattern = Pattern.compile("(\\[.+?\\])");
-	    	        Matcher matcher = pattern.matcher(liczby);
-	    	        int x=0;
+	    		iloscZakladow = in.findInLine("(?<= Ilosc zakladów: )([0-9]+)");
+	    		idKuponu = in.findInLine("(?<= ID kuponu: )([0-9]+)");
+	    		idKlienta = in.findInLine("(?<= ID klienta: )([0-9]+)");
+	    		liczby = in.findInLine("\\| \\[.*\\] \\|");
+	    		
+	    		Pattern pattern = Pattern.compile("(\\[.+?\\])");
+	    	    Matcher matcher = pattern.matcher(liczby);
+	    	    int x=0;
 	    	        
-	    	        tablica = new int[Integer.parseInt(iloscZakladow)][5];
+	    	        switch(typ){
+	    	        case "MALY":
+	    	        	tablica = new int[Integer.parseInt(iloscZakladow)][Stale.ILOSC_LOSOWANYCH_LICZB_ML];
+	    	        	break;
+	    	        case "DUZY":
+	    	        	tablica = new int[Integer.parseInt(iloscZakladow)][Stale.ILOSC_LOSOWANYCH_LICZB_DL];
+	    	        	break;
+	    	        
+	    	        case "MULTI":
+	    	        	tablica = new int[Integer.parseInt(iloscZakladow)][Stale.ILOSC_LOSOWANYCH_LICZB_MULTI];
+	    	        	break;
+	    	        }
+	    	        
 	    	        while (matcher.find()) {
 	    	        	int y=0;
 	    	            String group = matcher.group();
 	    	            group = group.substring(1, group.length()-1);
-	    	            System.out.println(group);
+	    	         //   System.out.println(group);
 	    	            Pattern pojeyncza = Pattern.compile("\\|([0-9]+?)\\|");
 		    	        Matcher matchers = pojeyncza.matcher(group);
 		    	        while(matchers.find()){
 		    	        
 		    	        	String groupPoj = matchers.group();
 		    	        	groupPoj = groupPoj.substring(1, groupPoj.length()-1);
-		    	        	System.out.println(groupPoj);
+		    	        //	System.out.println(groupPoj);
 		    	        	tablica[x][y]=Integer.parseInt(groupPoj);
 		    	        	y++;
 		    	        }
 		    	        x++;
 
 	    	        }
-
+/*
 	    	        System.out.println("QQQQQQQQQ");
 	    	        for(int i=0; i<tablica.length; i++){
 	    	        	for(int y=0; y<tablica[i].length; y++){
@@ -95,38 +111,61 @@ class Baza implements BazaInterfejs{
 	    	        	}
 	    	        	System.out.println("---");
 	    	        }
+*/
 	    	        int idKuponuInt = Integer.parseInt(idKuponu);
 	    	    	int iloscZakladowInt = Integer.parseInt(iloscZakladow);
 	    	    	int idKlientaInt = Integer.parseInt(idKlienta);
 
-	    	    	Kupon kupon = new Kupon(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
-	    	    	listaMaly.add(kupon);
 	    	    	
-	    
+	    	    	
+					switch(typ){
+	    	        case "MALY":
+	    	        	kupon = new KuponMaly(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
+	    	        	listaMaly.add(kupon);
+	    	        	break;
+	    	        case "DUZY":
+	    	        	kupon = new KuponDuzy(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
+	    	        	listaDuzy.add(kupon);
+	    	        	break;
+	    	        
+	    	        case "MULTI":
+	    	        	kupon = new KuponMulti(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
+	    	        	listaMulti.add(kupon);
+	    	        	break;
+	    	        }
 
 	    	}
 	    	
 	    	in.nextLine();
         }
-        in.close();
+        //in.close();
         
-        return listaMaly;
+        return null;
 	}
+	
+	@Override
+	public List<Kupon> pobierzMaly(){
+		return listaMaly;
+	}
+	@Override
+	public List<Kupon> pobierzDuzy(){
+		return listaDuzy;
+	}
+	@Override
+	public List<Kupon> pobierzMulti(){
+		return listaMulti;
+	}
+
+	public void zamknijSkaner() {
+		in.close();
+		
+	}
+	
+	
 	
 
-	@Override
-	public List<Kupon> pobierzDuzy() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<Kupon> pobierzMulti() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+
 	
 	
 	

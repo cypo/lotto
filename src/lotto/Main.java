@@ -14,7 +14,7 @@ public class Main{
 		
 
 		
-		int liczbaKlientow = 5;
+		int liczbaKlientow = 10000;
 		Klient[] klienci = new Klient[liczbaKlientow];
 		Klient klient = null;
 		
@@ -34,12 +34,10 @@ public class Main{
 		
 		
 		System.out.println("ODCZYT Z PLIKU:");
-		kolektura.odczyt();
-		System.out.println("GET");
-		System.out.println(kolektura.getKuponMaly(1).toString());
-		
-		
-		
+
+		System.out.println("Maly: "+kolektura.odczytMaly().get(0));
+		System.out.println("Duzy: "+kolektura.odczytMulti().get(0));
+		System.out.println("Multi: "+kolektura.odczytDuzy().get(0));
 
 
 	//	Scanner odczyt = new Scanner(System.in);
@@ -57,7 +55,7 @@ public class Main{
 		//System.out.println("ToString obiektu klasy Kupon (odczytane z klienta):");
 		//System.out.println(kolektura.getKupon(34).toString());
 
-
+		kolektura.zakonczOdczyt();
 		
 		
 		System.out.print("\n \n-----------------Losowanie:----------------- \n \n");

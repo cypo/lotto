@@ -12,9 +12,8 @@ import lotto.kupony.Kupon;
 
 
 public class Kolektura {
-	List<Kupon> kuponyMale = new ArrayList<Kupon>();
-	List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
-	Baza baza = null;
+	private List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
+	private Baza baza = null;
 	
 	public Kolektura() throws FileNotFoundException, IOException{
 		baza = Baza.getInstance();
@@ -24,7 +23,6 @@ public class Kolektura {
 		
 		int[][] chybilTrafil = skreslLiczby(kupon.getIloscZakladow(), kupon.getRodzajZakladu());
 		kupon.setSkresloneZaklady(chybilTrafil);
-		
 		zarejestrowaneKupony.add(kupon);
 		baza.zapisz(kupon);
 		return kupon;
@@ -33,33 +31,39 @@ public class Kolektura {
 	public void zakonczZapis(){
 		baza.zamknijPlik();
 	}
-	
-	public void odczyt() throws FileNotFoundException{
-		kuponyMale = baza.pobierzMaly();
-	}
-	public Kupon getKuponMaly(int id) throws FileNotFoundException{
-		return kuponyMale.get(id-1);
+	public void zakonczOdczyt(){
+		baza.zamknijSkaner();
 	}
 	
-	public Kupon getKupon(int id){
-		return zarejestrowaneKupony.get(id-1);
+	public List<Kupon> odczytMaly() throws FileNotFoundException{
+		baza.parsuj("MALY");
+		return baza.pobierzMaly();
 	}
+	public List<Kupon> odczytDuzy() throws FileNotFoundException{
+		baza.parsuj("DUZY");
+		return baza.pobierzDuzy();
+	}
+	public List<Kupon> odczytMulti() throws FileNotFoundException{
+		baza.parsuj("MULTI");
+		return baza.pobierzMulti();
+	}
+	
+	
+
 	private int[][] skreslLiczby(int iloscZakladow, int rodzajZakladu) {
 
-		
 		int iloscLosowanychLiczb = 0;
 		int iloscDostepnychLiczb = 0;
 		int[][] skresloneLiczby = new int[iloscZakladow][];
 		
-//DL
 			if (rodzajZakladu == 1) {
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_DL;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_DL;
-//ML
+
 			} else if (rodzajZakladu == 2) {
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_ML;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_ML;
-//MM
+
 			} else if (rodzajZakladu == 3) {
 				iloscLosowanychLiczb = Stale.ILOSC_LOSOWANYCH_LICZB_MULTI;
 				iloscDostepnychLiczb = Stale.ILOSC_DOSTEPNYCH_LICZB_MULTI;

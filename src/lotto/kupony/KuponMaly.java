@@ -14,7 +14,12 @@ public class KuponMaly extends Kupon {
 		super.idKlienta = idKlienta;
 		super.rodzajZakladu = 2;
 	}
-
+	public KuponMaly(int id, int iloscZakladow, int[][] skresloneZaklady, int idKlienta){
+		this.idKuponuOgolny = id;
+		this.iloscZakladow = iloscZakladow;
+		this.skresloneZaklady = skresloneZaklady;
+		this.idKlienta = idKlienta;
+	}
 	public int getIdKuponu(){
 		return idKuponu;
 	}
