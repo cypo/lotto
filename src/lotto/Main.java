@@ -14,7 +14,7 @@ public class Main{
 		
 
 		
-		int liczbaKlientow = 10000;
+		int liczbaKlientow = 100000;
 		Klient[] klienci = new Klient[liczbaKlientow];
 		Klient klient = null;
 		

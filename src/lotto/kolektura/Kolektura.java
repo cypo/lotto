@@ -13,7 +13,7 @@ import lotto.kupony.Kupon;
 
 public class Kolektura {
 	private List<Kupon> zarejestrowaneKupony = new ArrayList<Kupon>();
-	private Baza baza = null;
+	private BazaInterfejs baza = null;
 	
 	public Kolektura() throws FileNotFoundException, IOException{
 		baza = Baza.getInstance();

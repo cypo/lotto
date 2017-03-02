@@ -19,6 +19,8 @@ class Baza implements BazaInterfejs{
 	
 	
 	private static Baza INSTANCE;
+	
+	//inicjowac przy parsowaniu
 	private List<Kupon> listaMaly = new ArrayList<Kupon>();
 	private List<Kupon> listaDuzy = new ArrayList<Kupon>();
 	private List<Kupon> listaMulti = new ArrayList<Kupon>();
@@ -51,8 +53,8 @@ class Baza implements BazaInterfejs{
 		//in.close();
 	}
 	
-	
-	public List<Kupon> parsuj(String typ) throws FileNotFoundException {
+	//co parsuje :)
+	protected void parsuj(String typ) throws FileNotFoundException {
 		
 		in = new Scanner(file);
 		int[][] tablica = null;
@@ -104,7 +106,6 @@ class Baza implements BazaInterfejs{
 
 	    	        }
 /*
-	    	        System.out.println("QQQQQQQQQ");
 	    	        for(int i=0; i<tablica.length; i++){
 	    	        	for(int y=0; y<tablica[i].length; y++){
 	    	        		System.out.println(tablica[i][y]);
@@ -117,7 +118,7 @@ class Baza implements BazaInterfejs{
 	    	    	int idKlientaInt = Integer.parseInt(idKlienta);
 
 	    	    	
-	    	    	
+	    	    	//int albo enum + default
 					switch(typ){
 	    	        case "MALY":
 	    	        	kupon = new KuponMaly(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
@@ -138,9 +139,6 @@ class Baza implements BazaInterfejs{
 	    	
 	    	in.nextLine();
         }
-        //in.close();
-        
-        return null;
 	}
 	
 	@Override
@@ -156,7 +154,7 @@ class Baza implements BazaInterfejs{
 		return listaMulti;
 	}
 
-	public void zamknijSkaner() {
+	protected void zamknijSkaner() {
 		in.close();
 		
 	}
