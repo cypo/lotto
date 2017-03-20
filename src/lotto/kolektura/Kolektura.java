@@ -27,28 +27,6 @@ public class Kolektura {
 		baza.zapisz(kupon);
 		return kupon;
 	}
-	
-	public void zakonczZapis(){
-		baza.zamknijPlik();
-	}
-	public void zakonczOdczyt(){
-		baza.zamknijSkaner();
-	}
-	
-	public List<Kupon> odczytMaly() throws FileNotFoundException{
-		baza.parsuj("MALY");
-		return baza.pobierzMaly();
-	}
-	public List<Kupon> odczytDuzy() throws FileNotFoundException{
-		baza.parsuj("DUZY");
-		return baza.pobierzDuzy();
-	}
-	public List<Kupon> odczytMulti() throws FileNotFoundException{
-		baza.parsuj("MULTI");
-		return baza.pobierzMulti();
-	}
-	
-	
 
 	private int[][] skreslLiczby(int iloscZakladow, int rodzajZakladu) {
 

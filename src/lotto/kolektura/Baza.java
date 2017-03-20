@@ -15,20 +15,23 @@ import lotto.kupony.KuponDuzy;
 import lotto.kupony.KuponMaly;
 import lotto.kupony.KuponMulti;
 
-class Baza implements BazaInterfejs{
+public class Baza implements BazaInterfejs{
 	
 	
 	private static Baza INSTANCE;
 	
 	//inicjowac przy parsowaniu
-	private List<Kupon> listaMaly = new ArrayList<Kupon>();
-	private List<Kupon> listaDuzy = new ArrayList<Kupon>();
-	private List<Kupon> listaMulti = new ArrayList<Kupon>();
+	private List<Kupon> listaMaly = null;
+	private List<Kupon> listaDuzy = null;
+	private List<Kupon> listaMulti = null;
     private PrintWriter zapis = null;
 	private File file = new File("baza.txt");
     private Scanner in = null;
-    private Kupon kupon=null;
+    private Kupon kupon = null;
     
+    private enum typLosowania{
+    	MALY, DUZY, MULTI
+    }
     
     private Baza() throws FileNotFoundException{
     	zapis = new PrintWriter("baza.txt");
@@ -46,15 +49,40 @@ class Baza implements BazaInterfejs{
 	@Override
 	public void zapisz(Kupon kupon) throws FileNotFoundException {
 	    zapis.println(kupon.toString());
+	    zapis.flush();
 	}
 	
-	public void zamknijPlik(){
-		zapis.close();
-		//in.close();
+	@Override
+	public List<Kupon> pobierzMaly() throws FileNotFoundException{
+		odczytajKupony(typLosowania.MALY);
+		return listaMaly;
+	}
+	@Override
+	public List<Kupon> pobierzDuzy() throws FileNotFoundException{
+		odczytajKupony(typLosowania.DUZY);
+		return listaDuzy;
+	}
+	@Override
+	public List<Kupon> pobierzMulti() throws FileNotFoundException{
+		odczytajKupony(typLosowania.MULTI);
+		return listaMulti;
 	}
 	
-	//co parsuje :)
-	protected void parsuj(String typ) throws FileNotFoundException {
+	private void odczytajKupony(typLosowania typ) throws FileNotFoundException {
+		
+		switch(typ){
+        case MALY:
+        	listaMaly = new ArrayList<Kupon>();
+        	break;
+        case DUZY:
+        	listaDuzy = new ArrayList<Kupon>();
+        	break;
+        case MULTI:
+        	listaMulti = new ArrayList<Kupon>();
+        	break;
+        default:
+        	System.out.println("Podano nieprawid³owy argument: typ losowania");
+        }
 		
 		in = new Scanner(file);
 		int[][] tablica = null;
@@ -75,16 +103,17 @@ class Baza implements BazaInterfejs{
 	    	    int x=0;
 	    	        
 	    	        switch(typ){
-	    	        case "MALY":
+	    	        case MALY:
 	    	        	tablica = new int[Integer.parseInt(iloscZakladow)][Stale.ILOSC_LOSOWANYCH_LICZB_ML];
 	    	        	break;
-	    	        case "DUZY":
+	    	        case DUZY:
 	    	        	tablica = new int[Integer.parseInt(iloscZakladow)][Stale.ILOSC_LOSOWANYCH_LICZB_DL];
 	    	        	break;
-	    	        
-	    	        case "MULTI":
+	    	        case MULTI:
 	    	        	tablica = new int[Integer.parseInt(iloscZakladow)][Stale.ILOSC_LOSOWANYCH_LICZB_MULTI];
 	    	        	break;
+	    	        default:
+	    	        	System.out.println("Podano nieprawid³owy argument: typ losowania");
 	    	        }
 	    	        
 	    	        while (matcher.find()) {
@@ -120,19 +149,22 @@ class Baza implements BazaInterfejs{
 	    	    	
 	    	    	//int albo enum + default
 					switch(typ){
-	    	        case "MALY":
+	    	        case MALY:
 	    	        	kupon = new KuponMaly(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
 	    	        	listaMaly.add(kupon);
 	    	        	break;
-	    	        case "DUZY":
+	    	        case DUZY:
 	    	        	kupon = new KuponDuzy(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
 	    	        	listaDuzy.add(kupon);
 	    	        	break;
 	    	        
-	    	        case "MULTI":
+	    	        case MULTI:
 	    	        	kupon = new KuponMulti(idKuponuInt, iloscZakladowInt, tablica, idKlientaInt);
 	    	        	listaMulti.add(kupon);
 	    	        	break;
+	    	        	
+	    	        default:
+	    	        	System.out.println("Podano nieprawid³owy argument: typ losowania");
 	    	        }
 
 	    	}
@@ -140,30 +172,6 @@ class Baza implements BazaInterfejs{
 	    	in.nextLine();
         }
 	}
-	
-	@Override
-	public List<Kupon> pobierzMaly(){
-		return listaMaly;
-	}
-	@Override
-	public List<Kupon> pobierzDuzy(){
-		return listaDuzy;
-	}
-	@Override
-	public List<Kupon> pobierzMulti(){
-		return listaMulti;
-	}
-
-	protected void zamknijSkaner() {
-		in.close();
-		
-	}
-	
-	
-	
-
-
-
 	
 	
 	

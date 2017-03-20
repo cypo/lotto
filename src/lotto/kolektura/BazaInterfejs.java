@@ -5,7 +5,7 @@ import java.util.List;
 
 import lotto.kupony.Kupon;
 
-interface BazaInterfejs{
+public interface BazaInterfejs{
 
 	public List<Kupon> pobierzMaly() throws FileNotFoundException;
 	public List<Kupon> pobierzDuzy() throws FileNotFoundException;
